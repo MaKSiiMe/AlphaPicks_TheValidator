@@ -1,0 +1,4 @@
+yfinance==0.2.52 # Used to get stock data
+pandas==2.0.3 # Used to manipulate stock data
+matplotlib==3.7.5 # Used to plot stock data
+mplfinance==0.12.10b0 # Used to plot stock data
