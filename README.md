@@ -1,6 +1,6 @@
 # The Validator 🧮
 
-**The Validator** is a Python project that allows you to retrieve and visualize stock market data for a given ticker. The project uses [yfinance](https://pypi.org/project/yfinance/) to fetch the data, [pandas](https://pypi.org/project/pandas/) to analyse the data and [matplotlib](https://pypi.org/project/matplotlib/) to plot the closing price charts.
+**The Validator** is a Python project that allows you to retrieve and visualize stock market data for a given ticker. The project uses [yfinance](https://pypi.org/project/yfinance/) to fetch the data and calculates various financial metrics.
 In its final version, **The Validator** will be a financial analysis and valuation tool designed to automate the extraction and analysis of company data.
 
 ![coverage](https://img.shields.io/badge/coverage-10%25-orangered)
@@ -8,15 +8,16 @@ In its final version, **The Validator** will be a financial analysis and valuati
 ---
 **Table of Contents**
 
-- [Installation](#Installation)
-- [Execution / Usage](#execution--usage)
+- [Installation](#installation-️)
+- [Execution / Usage](#execution--usage-)
 - [Technologies](#technologies)
-- [Features](#features)
-- [Project Structure](Project-Structure)
-- [Contribution](#contribution)
+- [Features](#features-)
+- [Project Structure](#project-structure-)
+- [Contribution](#contribution-)
 - [Author](#author)
-- [Change log](#change-log)
-- [License](#license)
+- [Change log](#change-log-)
+- [License](#license-)
+- [About](#about-)
 
 ---
 
@@ -44,7 +45,7 @@ In its final version, **The Validator** will be a financial analysis and valuati
 
 ---
 
-## Execution / Usage 🚀  
+## Execution / Usage 🚀
 ### Quick Exemple
   1. Open the main.py file and run it to analyse a company:
 ```bash
@@ -57,18 +58,36 @@ In its final version, **The Validator** will be a financial analysis and valuati
     Script started
     Executing main function
     Main function started
-    Entrez le ticker de l'action : AAPL
+    Enter the stock ticker symbol: AAPL
     Fetching data for AAPL...
-    [*********************100%***********************]  1 of 1 completed
-    Data for AAPL fetched successfully.
-    Price          Close      High       Low      Open       Volume
-    Ticker          AAPL      AAPL      AAPL      AAPL         AAPL
-    Date                                                           
-    1980-12-12  0.098834  0.099264  0.098834  0.098834  469033600.0
-    1980-12-15  0.093678  0.094108  0.093678  0.094108  175884800.0
-    1980-12-16  0.086802  0.087232  0.086802  0.087232  105728000.0
-    1980-12-17  0.088951  0.089381  0.088951  0.088951   86441600.0
-    1980-12-18  0.091530  0.091959  0.091530  0.091530   73449600.0
+    Number of Countries: United States
+    ESG Score: N/A
+    10-Year Performance: 842.1973845667312
+    20-Year Performance: 21637.275297384524
+    P/E Ratio: 37.805923
+    PEG Ratio: N/A
+    Shares Outstanding Trend: N/A
+    P/FCF: N/A
+    Payout Ratio: 0.1612
+    Consecutive Years of Dividends: N/A
+    5-Year Dividend Growth: 0.61
+    10-Year Dividend Growth: N/A
+    Gross Margin: 0.46206
+    Net Margin: 0.23971
+    FCF Margin: N/A
+    ROCE: N/A
+    ROE: 1.5741299
+    ROA: 0.21464
+    Consecutive Years of Revenue Growth: N/A
+    5-Year Revenue CAGR: N/A
+    10-Year Revenue CAGR: N/A
+    Consecutive Years of Net Income Growth: N/A
+    5-Year Net Income CAGR: N/A
+    Consecutive Years of FCF Growth: N/A
+    5-Year FCF CAGR: N/A
+    Interest Coverage: N/A
+    Debt/Equity: 209.059
+    Debt/EBITDA: N/A
     Plotting data for AAPL...
     Data for AAPL plotted successfully.
     Script finished
@@ -78,6 +97,10 @@ In its final version, **The Validator** will be a financial analysis and valuati
 
 ## Technologies
 - [![Python](https://img.shields.io/badge/python-3.8-blue)](https://www.python.org/downloads/release/python-380/)
+
+### Dependencies
+- yfinance==0.2.52
+- pandas==2.0.3
 
 ---
 
@@ -89,17 +112,17 @@ In its final version, **The Validator** will be a financial analysis and valuati
 
 ---
 
-## Project Structure 📂 
+## Project Structure 📂
 ```filetree
     ├── src
     │   ├── __init__.py
-    │   ├── main.py                         # The main file that runs the script, asks the user to input a ticker, fetches the data, and displays the chart
-    │   │       └── main()                          # Entry point to execute the application
-    │   ├── data_loader.py                  # Contains the fetch_data function that retrieves stock market data for a given ticker
-    │   │       └── fetch_data()                    # Fetch stock market data for a given ticker
-    │   └── plot_generator.py               # Contains the plot_data function that plots the stock market data
-    │           └── plot_data()                     # Plot the stock market data
-    ├── requirements.txt                    # Lists all Python dependencies required for the project
+    │   ├── main.py                             # The main file that runs the script, asks the user to input a ticker, fetches the data, and calculates the financial metrics.
+    │   │       └── main()
+    │   ├── data_loader.py                      # Contains the fetch_data function that retrieves stock market data for a given ticker.
+    │   │       └── fetch_data()
+    │   └── metrics_calculator.py               # Contains the calculate_metrics function that calculates the financial metrics.
+    │           └── calculate_metrics()
+    ├── requirements.txt                        # Lists all Python dependencies required for the project
     └── README.md
 ```
 
@@ -116,6 +139,9 @@ Contributions are welcome! If you have ideas or improvements, feel free to submi
 ---
 
 ## Change log 🚧
+- 0.0.2
+    - Initial working version with basic functionality to fetch and calculate stock data metrics.
+    - Improved data cleaning and error handling.
 - 0.0.1
     - First working version
 - ... 
