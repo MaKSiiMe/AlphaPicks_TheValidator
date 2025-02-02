@@ -2,37 +2,59 @@
 
 import yfinance as yf
 import pandas as pd
+from typing import Tuple, Dict, Optional, Any
+import logging
 
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
-def fetch_data(ticker):
-    """Récupère les données boursières pour un ticker donné et nettoie les données."""
+def fetch_data(ticker: str) -> Tuple[Optional[Dict[str, Any]], pd.DataFrame, pd.DataFrame, pd.DataFrame]:
+    """
+    Fetch stock market data for a given ticker.
+    """
+    logger.info(f"Fetching data for {ticker}...")
     try:
-        print(f"Fetching data for {ticker}...")
         stock = yf.Ticker(ticker)
 
-        # Récupérer les informations de base
-        info = stock.info
+        # Basic Info
+        try:
+            info = stock.info
+        except Exception as e:
+            logger.error(f"Error fetching info for {ticker}: {e}")
+            info = None
 
-        # Récupérer les données historiques
-        hist = stock.history(period="max")
+        # Historical Data
+        try:
+            hist = stock.history(period="max")
+            hist = hist.fillna(0)
+            hist = hist.astype(float)
+        except Exception as e:
+            logger.error(f"Error fetching historical data for {ticker}: {e}")
+            hist = pd.DataFrame()
 
-        # Filtrer les données pour les 20 dernières années
-        twenty_years_ago = pd.Timestamp.now() - pd.DateOffset(years=20)
-        hist = hist[hist.index >= twenty_years_ago]
+        # Financial Statements
+        try:
+            financials = stock.financials.T.fillna(0)
+        except Exception as e:
+            logger.error(f"Error fetching financials for {ticker}: {e}")
+            financials = pd.DataFrame()
 
-        # Récupérer les données financières annuelles
-        financials = stock.financials.T  # Transposer pour avoir les années en index
-        financials = financials[financials.index >= twenty_years_ago.year]
+        # Cash Flow Statements
+        try:
+            cashflow = stock.cashflow.T.fillna(0)
+        except Exception as e:
+            logger.error(f"Error fetching cashflow for {ticker}: {e}")
+            cashflow = pd.DataFrame()
 
-        # Récupérer les données de flux de trésorerie annuelles
-        cashflow = stock.cashflow.T  # Transposer pour avoir les années en index
-        cashflow = cashflow[cashflow.index >= twenty_years_ago.year]
-
-        # Nettoyer les données
-        hist = hist.dropna()  # Supprimer les lignes avec des valeurs manquantes
-        hist = hist.astype(float)  # Convertir toutes les colonnes en float
+        if hist.empty:
+            logger.warning(f"No historical data found for {ticker}.")
+        if financials.empty:
+            logger.warning(f"No financial data found for {ticker}.")
+        if cashflow.empty:
+            logger.warning(f"No cashflow data found for {ticker}.")
 
         return info, hist, financials, cashflow
+
     except Exception as e:
-        print(f"Error fetching data for {ticker}: {e}")
-        return None, None, None, None
+        logger.error(f"Unexpected error fetching data for {ticker}: {e}")
+        return None, pd.DataFrame(), pd.DataFrame(), pd.DataFrame()

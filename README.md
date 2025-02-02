@@ -1,11 +1,13 @@
 # The Validator 🧮
 
 **The Validator** is a Python project that allows you to retrieve and visualize stock market data for a given ticker. The project uses [yfinance](https://pypi.org/project/yfinance/) to fetch the data and calculates various financial metrics.
+
 In its final version, **The Validator** will be a financial analysis and valuation tool designed to automate the extraction and analysis of company data.
 
-![coverage](https://img.shields.io/badge/coverage-10%25-orangered)
+![coverage](https://img.shields.io/badge/coverage-25%25-yellow)
 
 ---
+
 **Table of Contents**
 
 - [Installation](#installation-️)
@@ -32,12 +34,11 @@ In its final version, **The Validator** will be a financial analysis and valuati
    git clone https://github.com/your-username/AlphaPicks_TheValidator.git
    cd AlphaPicks_TheValidator
 ```
-2. Create and
+2. Create and activate a virtual environment:
 ```bash
     python3 -m venv env
     source env/bin/activate
 ```
-
 3. Install the dependencies:
 ```bash
    pip install -r requirements.txt
@@ -55,57 +56,56 @@ In its final version, **The Validator** will be a financial analysis and valuati
 
 ### Exemple Output
 ```plaintext
-    Script started
-    Executing main function
-    Main function started
-    Enter the stock ticker symbol: AAPL
-    Fetching data for AAPL...
-    Number of Countries: United States
-    ESG Score: N/A
-    10-Year Performance: 842.1973845667312
-    20-Year Performance: 21637.275297384524
-    P/E Ratio: 37.805923
-    PEG Ratio: N/A
-    Shares Outstanding Trend: N/A
-    P/FCF: N/A
-    Payout Ratio: 0.1612
-    Consecutive Years of Dividends: N/A
-    5-Year Dividend Growth: 0.61
-    10-Year Dividend Growth: N/A
-    Gross Margin: 0.46206
-    Net Margin: 0.23971
-    FCF Margin: N/A
-    ROCE: N/A
-    ROE: 1.5741299
-    ROA: 0.21464
-    Consecutive Years of Revenue Growth: N/A
-    5-Year Revenue CAGR: N/A
-    10-Year Revenue CAGR: N/A
-    Consecutive Years of Net Income Growth: N/A
-    5-Year Net Income CAGR: N/A
-    Consecutive Years of FCF Growth: N/A
-    5-Year FCF CAGR: N/A
-    Interest Coverage: N/A
-    Debt/Equity: 209.059
-    Debt/EBITDA: N/A
-    Plotting data for AAPL...
-    Data for AAPL plotted successfully.
-    Script finished
+    Enter the stock ticker symbol (or 'exit' to quit): aapl
+    INFO:data_loader:Fetching data for AAPL...
+
+    📊 Analysis for AAPL
+    Pays d'opération.............. United States
+    Score ESG..................... N/A (Data not available)
+    Performance 10 ans vs S&P500.. 594.41%
+    Performance 20 ans vs S&P500.. 19700.03%
+    PER........................... 37.46
+    PEG........................... N/A (Data not available)
+    Tendance actions.............. 1.05%/an ↗
+    P/FCF......................... N/A (Data not available)
+    Payout Ratio.................. 15.71%
+    Années dividendes consécutives 1.00
+    Croissance divid. 5 ans....... 61.00
+    Croissance divid. 10 ans...... N/A (Data not available)
+    Marge brute................... 46.21
+    Marge nette................... 23.97
+    FCF Margin.................... N/A (Invalid revenue data)
+    ROCE.......................... N/A (Data not available)
+    ROE........................... 157.41%
+    ROA........................... 21.46%
+    Années CA croissant........... 2
+    CA CAGR 5 ans................. N/A (Data not available)
+    CA CAGR 10 ans................ N/A (Data not available)
+    Années résultat net croissant. 1
+    Résultat net CAGR 5 ans....... N/A (Data not available)
+    Années FCF croissant.......... 2
+    FCF CAGR 5 ans................ N/A (Data not available)
+    Interest Coverage............. N/A (Data not available)
+    Debt/Equity................... 209.06x
+    Debt/EBITDA................... N/A (Data not available)
 ```
 
 ---
 
-## Technologies
+## Technologies 🖥️
 - [![Python](https://img.shields.io/badge/python-3.8-blue)](https://www.python.org/downloads/release/python-380/)
 
 ### Dependencies
 - yfinance==0.2.52
 - pandas==2.0.3
+- numpy==1.24.4
+- matplotlib==3.7.5
+- logging (built-in)
 
 ---
 
 ## Features ✨
-- [ ] 📊 **Financial Analysis**: Extract key data such as P/E ratio, net margin, debt-to-equity ratio, and more.
+- [x] 📊 **Financial Analysis**: Extract key data such as P/E ratio, net margin, debt-to-equity ratio, and more.
 - [ ] 🔍 **Customizable Criteria**: Evaluate companies based on growth, momentum, dividends, and other metrics.
 - [ ] 📈 **Global Scoring**: Calculate a score out of 20 to compare multiple companies.
 - [ ] 💾 **Export Results**: Save analyses to a CSV file for easy tracking.
@@ -116,13 +116,19 @@ In its final version, **The Validator** will be a financial analysis and valuati
 ```filetree
     ├── src
     │   ├── __init__.py
-    │   ├── main.py                             # The main file that runs the script, asks the user to input a ticker, fetches the data, and calculates the financial metrics.
-    │   │       └── main()
-    │   ├── data_loader.py                      # Contains the fetch_data function that retrieves stock market data for a given ticker.
-    │   │       └── fetch_data()
-    │   └── metrics_calculator.py               # Contains the calculate_metrics function that calculates the financial metrics.
-    │           └── calculate_metrics()
-    ├── requirements.txt                        # Lists all Python dependencies required for the project
+    │   ├── main.py                             # Main script to fetch data and analyze stock metrics
+    │   ├── data_loader.py                      # Retrieves stock market data for a given ticker
+    │   ├── metrics_calculator.py               # Calculates financial metrics
+    │   ├── metrics_macro.py                    # Macro-level metrics such as ESG score and market performance
+    │   ├── metrics_valuation.py                # Valuation metrics like P/E and PEG ratio
+    │   ├── metrics_dividend.py                 # Dividend-related metrics
+    │   ├── metrics_profitability.py            # Profitability metrics like margins and FCF
+    │   ├── metrics_rentability.py              # Return-based metrics such as ROE and ROA
+    │   ├── metrics_growth.py                   # Growth metrics (CAGR, revenue growth, etc.)
+    │   ├── metrics_health.py                   # Financial health indicators (Debt/Equity, Interest Coverage)
+    │   ├── utils.py                            # Helper functions for data extraction and formatting
+    ├── requirements.txt                        # Lists all Python dependencies
+    ├── rating_criteria.txt                        # Lists all Python dependencies
     └── README.md
 ```
 
@@ -133,18 +139,20 @@ Contributions are welcome! If you have ideas or improvements, feel free to submi
 
 ---
 
-## Author
+## Author 👤
 [@MaKSiiMe](https://github.com/MaKSiiMe)
 
 ---
 
 ## Change log 🚧
-- 0.0.2
-    - Initial working version with basic functionality to fetch and calculate stock data metrics.
-    - Improved data cleaning and error handling.
-- 0.0.1
-    - First working version
-- ... 
+- **0.0.3**
+  - Improved error handling and data validation.
+  - Added better support for missing financial metrics.
+- **0.0.2**
+  - Initial working version with basic functionality to fetch and calculate stock data metrics.
+  - Improved data cleaning and error handling.
+- **0.0.1**
+  - First working version
 
 ---
 

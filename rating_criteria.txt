@@ -1,0 +1,43 @@
+Here is the list of rating criteria:
+
+These 4 criteria correspond to the macro score, which evaluates the company's impact on the world:
+Criterion 1: Number of countries where the company operates
+Criterion 2: ESG score (Environmental, Social, and Governance)
+Criterion 3: Stock price trend over 10 years compared to the S&P 500
+Criterion 4: Stock price trend over 20 years compared to the S&P 500
+
+These 4 criteria correspond to the valuation score, which evaluates the stock's price and intrinsic value:
+Criterion 5: P/E ratio (Price to Earnings)
+Criterion 6: PEG ratio (Price/Earnings to Growth)
+Criterion 7: Trend in the number of shares outstanding
+Criterion 8: P/FCF (Price to Free Cash Flow)
+
+These 4 criteria correspond to the dividend score, which evaluates the solidity of the dividend:
+Criterion 9: Payout ratio
+Criterion 10: Number of consecutive years of dividend payments
+Criterion 11: 5-year dividend growth
+Criterion 12: 10-year dividend growth
+
+These 3 criteria correspond to the profitability score, which evaluates the company's profit:
+Criterion 13: Gross margin
+Criterion 14: Net margin
+Criterion 15: FCF margin (Free Cash Flow margin)
+
+These 3 criteria correspond to the rentability score, which evaluates the company's profitability:
+Criterion 16: ROCE (Return on Capital Employed)
+Criterion 17: ROE (Return on Equity)
+Criterion 18: ROA (Return on Assets)
+
+These 5 criteria correspond to the growth score, which evaluates the company's internal growth:
+Criterion 19: Number of consecutive years of revenue growth
+Criterion 20: 5-year revenue CAGR (Compound Annual Growth Rate)
+Criterion 21: 10-year revenue CAGR (Compound Annual Growth Rate)
+Criterion 22: Number of consecutive years of net income growth
+Criterion 23: 5-year net income CAGR (Compound Annual Growth Rate)
+
+These 5 criteria correspond to the health score, which evaluates the company's solvency and free cash flow:
+Criterion 24: Number of consecutive years of free cash flow growth
+Criterion 25: 5-year free cash flow CAGR (Compound Annual Growth Rate)
+Criterion 26: Interest coverage
+Criterion 27: Debt to equity ratio
+Criterion 28: Debt to EBITDA ratio
